@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.webstudioproject.AdminController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView fx:id="table" layoutX="14.0" layoutY="14.0" onMouseClicked="#setLabelsText" prefHeight="425.0" prefWidth="944.0">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="90.0" text="id" />
+                <TableColumn fx:id="name" prefWidth="163.0" text="Наименование" />
+                <TableColumn fx:id="date" prefWidth="173.0" text="Сроки выполнения" />
+                  <TableColumn fx:id="price" prefWidth="99.0" text="Стоимость" />
+                  <TableColumn fx:id="status" prefWidth="106.0" text="Статус" />
+                  <TableColumn fx:id="cont" prefWidth="148.0" text="Контакты" />
+                  <TableColumn fx:id="user" prefWidth="164.0" text="Пользователь" />
+              </columns>
+            </TableView>
+            <SplitMenuButton layoutX="1213.0" layoutY="14.0" mnemonicParsing="false">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#logout" text="Выход" />
+              </items>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@user-solid.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </SplitMenuButton>
+            <Button onAction="#updateOrder" layoutX="972.0" layoutY="313.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="140.0" text="Сохранить" />
+            <Button onAction="#deleteOrder" layoutX="1143.0" layoutY="313.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="140.0" text="Удалить" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="974.0" layoutY="71.0" prefHeight="16.0" prefWidth="312.0" text="Наименование:" textAlignment="CENTER" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="974.0" layoutY="131.0" prefHeight="16.0" prefWidth="312.0" text="Сроки выполнения:" textAlignment="CENTER" />
+            <DatePicker fx:id="first_date_capt" editable="false" layoutX="972.0" layoutY="158.0" prefHeight="24.0" prefWidth="140.0" />
+            <Label layoutX="1123.0" layoutY="155.0" prefHeight="21.0" prefWidth="14.0" text="-">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="last_date_capt" editable="false" layoutX="1143.0" layoutY="158.0" prefHeight="24.0" prefWidth="140.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="974.0" layoutY="192.0" prefHeight="16.0" prefWidth="312.0" text="Стоимость:" textAlignment="CENTER" />
+            <TextField fx:id="price_capt" layoutX="974.0" layoutY="215.0" prefHeight="24.0" prefWidth="312.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="974.0" layoutY="250.0" prefHeight="16.0" prefWidth="312.0" text="Статус:" textAlignment="CENTER" />
+            <ChoiceBox fx:id="name_capt" layoutX="974.0" layoutY="99.0" prefHeight="24.0" prefWidth="312.0" />
+            <ChoiceBox fx:id="status_capt" layoutX="974.0" layoutY="276.0" prefHeight="24.0" prefWidth="312.0" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

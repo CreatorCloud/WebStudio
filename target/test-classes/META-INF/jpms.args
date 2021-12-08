@@ -1,0 +1,4 @@
+--patch-module
+com.mycompany.webstudioproject=_
+--add-reads
+com.mycompany.webstudioproject=ALL-UNNAMED
