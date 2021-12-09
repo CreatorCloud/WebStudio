@@ -4,6 +4,10 @@
  */
 package com.mycompany.webstudioproject;
 
+import static com.mycompany.webstudioproject.App.dbHost;
+import static com.mycompany.webstudioproject.App.dbLogin;
+import static com.mycompany.webstudioproject.App.dbName;
+import static com.mycompany.webstudioproject.App.dbPassword;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import java.sql.Connection;
@@ -52,7 +56,7 @@ public class SignupController {
     @FXML
     private void signup() throws IOException{
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement();                                           
             if (fio.getText().equals("") || date_of_birth.getValue() == null || login.getText().equals("") || password.getText().equals("")){
                 hidden_label.setText("Все поля обязательны для заполнения!");

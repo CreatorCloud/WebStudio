@@ -12,7 +12,11 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+    
+    public static String dbHost = "localhost",
+            dbName = "webstudio",
+            dbLogin = "admin",
+            dbPassword = "admin";
     public static Scene scene;
     static Stage prevStage;
 

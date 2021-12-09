@@ -4,6 +4,10 @@
  */
 package com.mycompany.webstudioproject;
 
+import static com.mycompany.webstudioproject.App.dbHost;
+import static com.mycompany.webstudioproject.App.dbLogin;
+import static com.mycompany.webstudioproject.App.dbName;
+import static com.mycompany.webstudioproject.App.dbPassword;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,7 +61,7 @@ public class AdminController {
     @FXML
     private void initialize() throws SQLException{
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement(); 
             ResultSet orders = statement.executeQuery("SELECT * FROM `orders`");
             ObservableList<Order> order_list = FXCollections.observableArrayList();
@@ -86,7 +90,7 @@ public class AdminController {
     @FXML
     private void setLabelsText() throws SQLException{
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement();
             Order selectedOrder = (Order)table.getSelectionModel().getSelectedItem();
             idFromSelected = selectedOrder.getId();
@@ -121,7 +125,7 @@ public class AdminController {
     @FXML
     private void updateOrder() throws SQLException, IOException{
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement();
             statement.executeUpdate("UPDATE `orders` SET `name` = " + "'" + name_capt.getValue() + "'," + "`first_date` = " + "'" + first_date_capt.getValue() + "'," + "`last_date` = " + "'" + last_date_capt.getValue() + "'," + "`price` = " + "'" + price_capt.getText() + "'," + "`status` = " + "'" + status_capt.getValue() + "'" + " WHERE `orders`.`id` = " + "'" + idFromSelected + "';");
             App.setRoot("admin");

@@ -4,6 +4,10 @@
  */
 package com.mycompany.webstudioproject;
 
+import static com.mycompany.webstudioproject.App.dbHost;
+import static com.mycompany.webstudioproject.App.dbLogin;
+import static com.mycompany.webstudioproject.App.dbName;
+import static com.mycompany.webstudioproject.App.dbPassword;
 import static com.mycompany.webstudioproject.SigninController.currentUserLogin;
 import java.io.IOException;
 import java.sql.Connection;
@@ -53,7 +57,7 @@ public class UserOrdersController {
     @FXML
     private void initialize() throws SQLException{
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement(); 
             ResultSet orders = statement.executeQuery("SELECT * FROM `orders` WHERE `user` LIKE" + "'" + currentUserLogin + "'");
             ObservableList<Order> order_list = FXCollections.observableArrayList();
@@ -81,7 +85,7 @@ public class UserOrdersController {
     @FXML
     private void dropOrderFromDatabase() throws SQLException, IOException{
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement();         
             Order selectedOrder = (Order)table.getSelectionModel().getSelectedItem();
             statement.executeUpdate("DELETE FROM `orders` WHERE `orders`.`id` = " + "'" + selectedOrder.getId() + "'");     

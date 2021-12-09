@@ -4,6 +4,10 @@
  */
 package com.mycompany.webstudioproject;
 
+import static com.mycompany.webstudioproject.App.dbHost;
+import static com.mycompany.webstudioproject.App.dbLogin;
+import static com.mycompany.webstudioproject.App.dbName;
+import static com.mycompany.webstudioproject.App.dbPassword;
 import static com.mycompany.webstudioproject.App.scene;
 import java.io.IOException;
 import java.sql.Connection;
@@ -43,7 +47,7 @@ public class SigninController {
     @FXML
     private void signin() throws IOException{
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/webstudio?serverTimezone=Europe/Moscow&allowPublicKeyRetrieval=true&useSSL=false", "admin", "admin");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + dbHost +"/" + dbName, dbLogin, dbPassword);
             Statement statement = conn.createStatement();           
             ResultSet resultSet = statement.executeQuery("SELECT * FROM `users` WHERE `login` LIKE" + "'" + login.getText() + "'"); 
             if(resultSet.next()){
